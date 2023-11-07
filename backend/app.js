@@ -1,14 +1,11 @@
 const express = require('express');
 const app = express();
+const booksRoutes = require('./routes/book');
 const userRoutes = require('./routes/user');
-const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://acalmels92:pQh5vvwU4ZVIndhf@cluster0.bhexjrs.mongodb.net/?retryWrites=true&w=majority',
-  { useNewUrlParser: true,
-    useUnifiedTopology: true })
-  .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
+const path = require('path');
+const { connectToDatabase } = require('./db');
 
-app.use(express.json());
+connectToDatabase();
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -16,9 +13,10 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
   });
-
-const booksRoutes = require('./routes/book');
+app.use(express.json());
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/books', booksRoutes);
 app.use('/api/auth', userRoutes);
+ 
 
 module.exports = app;

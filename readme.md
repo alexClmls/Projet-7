@@ -33,3 +33,4 @@ Accédez à votre compte MongoDB et créez une base de données.
 Copiez le nom d'utilisateur, le mot de passe et le nom de l'hôte (généralement fourni par MongoDB) dans le fichier .env.
 
 L'application sera disponible à l'adresse http://localhost:3000 dans votre navigateur.
+![image](https://github.com/alexClmls/Projet-7/assets/48100843/11596d10-7239-4f69-827a-8d4b819f1cf8)
